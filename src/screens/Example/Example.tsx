@@ -6,6 +6,7 @@ import {
 	TouchableOpacity,
 	ScrollView,
 	Alert,
+	Button,
 } from 'react-native';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
@@ -22,8 +23,8 @@ import { isImageSourcePropType } from '@/types/guards/image';
 import SendImage from '@/theme/assets/images/send.png';
 import ColorsWatchImage from '@/theme/assets/images/colorswatch.png';
 import TranslateImage from '@/theme/assets/images/translate.png';
-
-function Example() {
+import { RootScreenProps } from '@/types/navigation';
+function Example({ navigation }: RootScreenProps<'Example'>) {
 	const { t } = useTranslation(['example', 'welcome']);
 
 	const {
@@ -68,10 +69,16 @@ function Example() {
 	) {
 		throw new Error('Image source is not valid');
 	}
-
 	return (
 		<SafeScreen>
 			<ScrollView>
+				<Button
+					title="Go to Coloring Page"
+					onPress={() => {
+						navigation.navigate('ColoringPage');
+					}}
+				/>
+
 				<View
 					style={[
 						layout.justifyCenter,
