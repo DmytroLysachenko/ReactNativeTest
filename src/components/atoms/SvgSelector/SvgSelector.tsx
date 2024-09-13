@@ -1,34 +1,28 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React from 'react';
-import { SvgNames } from '@/screens/ColoringPage/ColoringPage';
+import React, { useEffect } from 'react';
+import { ColoringPage } from '@/screens/ColoringPage/ColoringPage';
 
 export default function SvgSelector({
-	onSelectSvg,
-	svgList,
+	onSelectPage,
+	pages,
 	setPathColors,
 }: {
-	onSelectSvg: (
-		svgName:
-			| 'Rabbit & box turtle'
-			| 'Mandrills'
-			| 'Painted bunting'
-			| 'Emerald toucanet'
-			| 'Cardinal',
-	) => void;
-	svgList: SvgNames;
+	onSelectPage: (svg: ColoringPage) => void;
+	pages: ColoringPage[];
 	setPathColors: (obj: Record<string, string>) => void;
 }) {
 	return (
 		<View style={styles.container}>
-			{svgList.map(svgName => (
+			{pages.map(page => (
 				<TouchableOpacity
-					key={svgName}
+					key={page.id}
 					style={styles.button}
 					onPress={() => {
-						onSelectSvg(svgName), setPathColors({});
+						onSelectPage(page);
+						setPathColors({});
 					}}
 				>
-					<Text style={styles.buttonText}>{svgName}</Text>
+					<Text style={styles.buttonText}>{page.name}</Text>
 				</TouchableOpacity>
 			))}
 		</View>
@@ -52,9 +46,3 @@ const styles = StyleSheet.create({
 		color: '#333',
 	},
 });
-
-//  {
-// 	onSelectSvg: (svg: string) => void;
-// 	svgList:
-// 	setPathColors;
-// }
