@@ -71,8 +71,8 @@ export const getPageById = (
 			(_, { rows }) => {
 				if (rows.length > 0) {
 					const page = {
-						name: rows.item(0).Name,
-						link: rows.item(0).Link,
+						name: rows.item(0).name,
+						link: rows.item(0).link,
 					};
 					callback(page);
 				} else {
