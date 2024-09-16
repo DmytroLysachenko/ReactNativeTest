@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import Svg, { Path } from 'react-native-svg';
 
-export function ColoringSVG({
+export default function ColoringSVG({
 	pathColors,
 	handlePathPress,
 	url,

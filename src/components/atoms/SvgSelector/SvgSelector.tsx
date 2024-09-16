@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ColoringPage } from '@/screens/ColoringPage/ColoringPage';
 
 export default function SvgSelector({

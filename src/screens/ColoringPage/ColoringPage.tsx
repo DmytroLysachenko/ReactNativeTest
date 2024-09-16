@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { SafeScreen } from '@/components/template';
 import CustomColorPicker from '@/components/atoms/ColorPicker/ColorPicker';
-import { ColoringSVG } from '@/components/atoms/ColoringSVG/ColoringSVG';
+import ColoringSVG from '@/components/atoms/ColoringSVG/ColoringSVG';
 import SvgSelector from '@/components/atoms/SvgSelector/SvgSelector';
 import { getAllPages } from '@/database/operations';
+import AdBanner from '@/components/atoms/Ads/AdBanner';
+import useAds from '@/theme/hooks/useAd';
 
 export type ColoringPage = {
 	id: number;
@@ -18,8 +20,11 @@ function ColoringPage() {
 	const [pages, setPages] = useState<ColoringPage[]>([]);
 	const [selectedPage, setSelectedPage] = useState<ColoringPage>();
 
+	const { showRewardedAd, showInterstitialAd } = useAds();
+
 	const onSelectColor = ({ hex }: { hex: string }) => {
 		setSelectedColor(hex);
+		showInterstitialAd();
 	};
 
 	const handlePathPress = (pathId: string) => {
@@ -27,6 +32,7 @@ function ColoringPage() {
 			...pathColors,
 			[pathId]: selectedColor,
 		});
+		showRewardedAd();
 	};
 
 	useEffect(() => {
@@ -43,6 +49,7 @@ function ColoringPage() {
 	return (
 		<SafeScreen>
 			<ScrollView>
+				<AdBanner />
 				<CustomColorPicker
 					onSelectColor={onSelectColor}
 					selectedColor={selectedColor}
