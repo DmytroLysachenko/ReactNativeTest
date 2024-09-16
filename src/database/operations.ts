@@ -37,7 +37,7 @@ export const insertPage = (name: string, link: string) => {
 // GET ALL PAGES
 
 export const getAllPages = (
-	callback: (pages: { id: number; name: string; link: string }[]) => void,
+	callback: (pages: { ID: number; name: string; link: string }[]) => void,
 ) => {
 	db.transaction(tx => {
 		tx.executeSql(

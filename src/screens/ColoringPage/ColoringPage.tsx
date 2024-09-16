@@ -9,7 +9,7 @@ import AdBanner from '@/components/atoms/Ads/AdBanner';
 import useAds from '@/theme/hooks/useAd';
 
 export type ColoringPage = {
-	id: number;
+	ID: number;
 	name: string;
 	link: string;
 };

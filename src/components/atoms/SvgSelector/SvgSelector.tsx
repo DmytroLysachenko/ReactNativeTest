@@ -15,7 +15,7 @@ export default function SvgSelector({
 		<View style={styles.container}>
 			{pages.map(page => (
 				<TouchableOpacity
-					key={page.id}
+					key={page.ID}
 					style={styles.button}
 					onPress={() => {
 						onSelectPage(page);
