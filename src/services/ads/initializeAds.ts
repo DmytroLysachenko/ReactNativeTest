@@ -9,11 +9,15 @@ import {
 
 const interstitialAdUnitId = __DEV__
 	? TestIds.INTERSTITIAL
-	: 'ca-app-pub-8155583899840720/8620006521';
+	: process.env.INTERSTITIAL_AD
+	? process.env.INTERSTITIAL_AD
+	: TestIds.INTERSTITIAL;
 
 const rewardedAdUnitId = __DEV__
 	? TestIds.REWARDED
-	: 'ca-app-pub-8155583899840720/1275298150';
+	: process.env.REWARDED_AD
+	? process.env.REWARDED_AD
+	: TestIds.REWARDED;
 
 export const initializeInterstitialAd = (
 	setIsInterstitialLoaded: (value: boolean) => void,

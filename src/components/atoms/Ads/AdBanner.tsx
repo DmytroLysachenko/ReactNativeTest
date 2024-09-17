@@ -9,12 +9,13 @@ import {
 export default function AdBanner() {
 	const adUnitId = __DEV__
 		? TestIds.BANNER
-		: 'ca-app-pub-8155583899840720/4204713827';
+		: process.env.BANNER_AD
+		? process.env.BANNER_AD
+		: TestIds.BANNER;
 
 	// Banner Ad's ID
 	return (
 		<View>
-			<Text>Welcome to AdMob</Text>
 			<BannerAd
 				unitId={adUnitId}
 				size={BannerAdSize.FULL_BANNER}
