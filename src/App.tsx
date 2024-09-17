@@ -35,6 +35,12 @@ function App() {
 
 		initializeRewardAd(setIsRewardedLoaded, setReward, setRewardedAd);
 
+		try {
+			initializeDatabase();
+		} catch (error) {
+			console.error('Data base initialization error:', error);
+		}
+
 		return () => {
 			if (interstitialAd !== null) {
 				interstitialAd.removeAllListeners();
@@ -64,13 +70,7 @@ function App() {
 		}
 	};
 
-	useEffect(() => {
-		try {
-			initializeDatabase();
-		} catch (error) {
-			console.error('Initialization error:', error);
-		}
-	}, []);
+	useEffect(() => {}, []);
 
 	return (
 		<QueryClientProvider client={queryClient}>

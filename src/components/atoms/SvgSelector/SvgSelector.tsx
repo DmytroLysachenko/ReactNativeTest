@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'column',
 		marginVertical: 20,
+		rowGap: 10,
 		justifyContent: 'center',
 	},
 	button: {

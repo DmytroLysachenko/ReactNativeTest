@@ -58,14 +58,11 @@ export default function CustomColorPicker({
 						onComplete={onSelectColor}
 						value={selectedColor}
 						style={{
-							height: 300,
-							width: 300,
+							minWidth: 300,
 							padding: 20,
-							paddingBottom: 300,
 						}}
 					>
-						<OpacitySlider style={{ padding: 20 }} />
-						<HueSlider style={{ marginTop: 20, padding: 20 }} />
+						<HueSlider style={{ marginTop: 10, padding: 20 }} />
 						<Panel1
 							style={{
 								marginTop: 20,

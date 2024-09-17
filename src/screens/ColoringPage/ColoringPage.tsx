@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView } from 'react-native';
+import { Button, ScrollView, View } from 'react-native';
 import { SafeScreen } from '@/components/template';
 import CustomColorPicker from '@/components/atoms/ColorPicker/ColorPicker';
 import ColoringSVG from '@/components/atoms/ColoringSVG/ColoringSVG';
@@ -24,7 +24,6 @@ function ColoringPage() {
 
 	const onSelectColor = ({ hex }: { hex: string }) => {
 		setSelectedColor(hex);
-		showInterstitialAd();
 	};
 
 	const handlePathPress = (pathId: string) => {
@@ -32,7 +31,6 @@ function ColoringPage() {
 			...pathColors,
 			[pathId]: selectedColor,
 		});
-		showRewardedAd();
 	};
 
 	useEffect(() => {
@@ -69,6 +67,20 @@ function ColoringPage() {
 						/>
 					</>
 				)}
+				<View style={{ flex: 1, gap: 10 }}>
+					<Button
+						title="Rewarded ad"
+						onPress={() => {
+							showRewardedAd();
+						}}
+					/>
+					<Button
+						title="Interstitial ad"
+						onPress={() => {
+							showInterstitialAd();
+						}}
+					/>
+				</View>
 			</ScrollView>
 		</SafeScreen>
 	);
