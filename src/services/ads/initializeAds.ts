@@ -3,7 +3,6 @@ import {
 	InterstitialAd,
 	RewardedAd,
 	RewardedAdEventType,
-	RewardedAdReward,
 	TestIds,
 } from 'react-native-google-mobile-ads';
 
@@ -23,8 +22,12 @@ export const initializeInterstitialAd = (
 	setIsInterstitialLoaded: (value: boolean) => void,
 	setIntersstitialAd: (ad: InterstitialAd) => void,
 ) => {
-	const interstitialAd =
-		InterstitialAd.createForAdRequest(interstitialAdUnitId);
+	const interstitialAd = InterstitialAd.createForAdRequest(
+		interstitialAdUnitId,
+		{
+			requestNonPersonalizedAdsOnly: true,
+		},
+	);
 
 	// Load Interstitial Ad
 	const loadInterstitialAd = () => {
@@ -42,20 +45,27 @@ export const initializeInterstitialAd = (
 		});
 
 		interstitialAd.addAdEventListener(AdEventType.ERROR, error => {
-			console.error('Interstitial ad failed to load: ', error);
+			if (error.code === 'googleMobileAds/no-fill') {
+				// Handle no-fill gracefully
+				console.log('No ad available to fill the request');
+			} else {
+				console.error('Interstitial ad failed to load: ', error);
+			}
 		});
 	};
-
-	loadInterstitialAd();
-	setIntersstitialAd(interstitialAd);
+	setTimeout(() => {
+		loadInterstitialAd();
+		setIntersstitialAd(interstitialAd);
+	}, 10000);
 };
 
 export const initializeRewardAd = (
 	setIsRewardedLoaded: (value: boolean) => void,
-	setReward: (reward: RewardedAdReward) => void,
 	setRewardedAd: (ad: RewardedAd) => void,
 ) => {
-	const rewardedAd = RewardedAd.createForAdRequest(rewardedAdUnitId);
+	const rewardedAd = RewardedAd.createForAdRequest(rewardedAdUnitId, {
+		requestNonPersonalizedAdsOnly: true,
+	});
 
 	// Load Rewarded Ad
 	const loadRewardedAd = () => {
@@ -67,7 +77,6 @@ export const initializeRewardAd = (
 		});
 
 		rewardedAd.addAdEventListener(RewardedAdEventType.EARNED_REWARD, reward => {
-			setReward(reward);
 			console.log('User earned reward: ', reward);
 		});
 
@@ -78,10 +87,16 @@ export const initializeRewardAd = (
 		});
 
 		rewardedAd.addAdEventListener(AdEventType.ERROR, error => {
-			console.error('Rewarded ad failed to load: ', error);
+			if (error.code === 'googleMobileAds/no-fill') {
+				// Handle no-fill gracefully
+				console.log('No ad available to fill the request');
+			} else {
+				console.error('Rewarded ad failed to load: ', error);
+			}
 		});
 	};
-
-	loadRewardedAd();
-	setRewardedAd(rewardedAd);
+	setTimeout(() => {
+		loadRewardedAd();
+		setRewardedAd(rewardedAd);
+	}, 10000);
 };
