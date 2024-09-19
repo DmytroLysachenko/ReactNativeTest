@@ -4,18 +4,10 @@ import { MMKV } from 'react-native-mmkv';
 import { ThemeProvider } from '@/theme';
 import ApplicationNavigator from './navigators/Application';
 import './translations';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { initializeDatabase } from './database/initDatabase';
-import {
-	InterstitialAd,
-	RewardedAd,
-	RewardedAdReward,
-} from 'react-native-google-mobile-ads';
+
 import AdProvider from './ads/AdsProvider';
-import {
-	initializeInterstitialAd,
-	initializeRewardAd,
-} from './services/ads/initializeAds';
 
 export const queryClient = new QueryClient();
 
