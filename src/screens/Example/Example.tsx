@@ -78,6 +78,12 @@ function Example({ navigation }: RootScreenProps<'Example'>) {
 						navigation.navigate('ColoringPage');
 					}}
 				/>
+				<Button
+					title="Go to Coloring Page V2"
+					onPress={() => {
+						navigation.navigate('ColoringPageV2');
+					}}
+				/>
 
 				<View
 					style={[
